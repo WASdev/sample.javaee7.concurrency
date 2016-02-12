@@ -1,0 +1,23 @@
+<server description="new server">
+
+<featureManager>
+    <feature>concurrent-1.0</feature>
+    <feature>jpa-2.1</feature>
+    <feature>jsp-2.3</feature>
+      <feature>localConnector-1.0</feature>
+    </featureManager>
+
+    <httpEndpoint host="*" httpPort="9080" httpsPort="9443" id="defaultHttpEndpoint"/>
+
+  <dataSource id="DefaultDataSource">
+    <jdbcDriver libraryRef="DerbyLib"/>
+    <properties.derby.embedded createDatabase="create" databaseName="${shared.resource.dir}/data/concurrentsampledb"/>
+  </dataSource>
+  <library id="DerbyLib">
+    <file name="${server.config.dir}/derby/derby.jar"/>
+  </library>
+
+    <applicationMonitor updateTrigger="mbean"/>
+
+    <webApplication id="sample.javaee7.concurrency" location="sample.javaee7.concurrency.war" name="sample.javaee7.concurrency"/>
+</server>
