@@ -32,18 +32,22 @@ To import the source code into Eclipse/WDT:
 
 ####Manual Deployment
 1.	Add following features to your server.xml 
-        `<feature>concurrent-1.0</feature>
+        ```
+        <feature>concurrent-1.0</feature>
         <feature>jpa-2.1</feature>
-        <feature>jsp-2.3</feature>`
+        <feature>jsp-2.3</feature>
+        ```
    
 2.	Add following derby resources to your server.xml:
-        `<dataSource id="DefaultDataSource">
+        ```
+        <dataSource id="DefaultDataSource">
             <jdbcDriver libraryRef="DerbyLib"/>
             <properties.derby.embedded createDatabase="create" databaseName="${shared.resource.dir}/data/concurrentsampledb"/>
-          </dataSource>
-          <library id="DerbyLib">
+        </dataSource>
+        <library id="DerbyLib">
             <file name="${server.config.dir}/derby/derby.jar"/>
-          </library>`
+        </library>
+          ```
 3.	Install the sample app to your server by copying sample.javaee7.concurrency.war that was made from running: " mvn install"
 4.	Start the server.
 5.	Run the sample by hitting the following URL using your servers hostname and port
