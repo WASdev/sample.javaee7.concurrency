@@ -32,7 +32,7 @@ To import the source code into Eclipse/WDT:
 
 ####Manual Deployment
 1.	Add following features to your server.xml 
-
+        
         ```
         <feature>concurrent-1.0</feature>
         <feature>jpa-2.1</feature>
@@ -40,7 +40,7 @@ To import the source code into Eclipse/WDT:
         ```
    
 2.	Add following derby resources to your server.xml:
-
+        
         ```
         <dataSource id="DefaultDataSource">
             <jdbcDriver libraryRef="DerbyLib"/>
