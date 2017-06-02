@@ -3,7 +3,7 @@
 This application on demonstrates how to use managed executors, managed scheduled executors and context service to perform tasks in parallel in a simple application.
 
 ### WAS Liberty
-#### Maven
+#### Running with Maven
 
 The sample can be built using Apache Maven. In the directory where you cloned the repository issue the following command to build the source.
 
@@ -15,7 +15,7 @@ Then, in the same directory issue the following command to run it on a Liberty s
 
 You can connect to the application at [http://hostname:port/sample.javaee7.concurrency/ConcurrencySample](http://hostname:port/sample.javaee7.concurrency/ConcurrencySample).
 
-#### WebSphere Development Tools (WDT)
+#### Running in Eclipse/WDT with Maven
 
 The WebSphere Development Tools (WDT) for Eclipse can be used to control the server (start/stop/dump/etc.), it also supports incremental publishing with minimal restarts, working with a debugger to step through your applications, etc.
 
@@ -26,40 +26,15 @@ WDT also provides:
 
 Installing WDT on Eclipse is as simple as a drag-and-drop, but the process is explained on [wasdev.net](https://developer.ibm.com/wasdev/downloads/liberty-profile-using-eclipse/).
 
-To import the source code into Eclipse/WDT:
+#### Import project and running in Eclipse/WDT:
 
-1.	In the Enterprise Explorer view, right click and select Import -> Existing Maven Projects
-2.	Browse... to the top level directory titled sample.javaee7.concurrency
-3.	Verify all three boxes are checked and select Finish
+1.	Select menu File -> Import -> Maven -> Existing Maven Projects.
+2.	Select Browse... to the top level directory titled sample.javaee7.concurrency and select Finish
+3.	Click Yes to the WebSphere Liberty dialog to automatically create server in the Servers view for this project.
+4.  Right-click the project and select Run As > Run on Server.
+5.  Select the server and click Finish.
+6.  Confirm web browser opens with the sample url, [http://localhost:9080/sample.javaee7.concurrency/](http://localhost:9080/sample.javaee7.concurrency/).
 
-#### Manual Deployment
-1.	Add following features to your server.xml 
-        
-    ```
-        <feature>concurrent-1.0</feature>
-        <feature>jpa-2.1</feature>
-        <feature>jsp-2.3</feature>
-    ```
-    
-2.	Add following derby resources to your server.xml:
-  
-    ```
-    <library id="DerbyLib">
-        <file name="${shared.resource.dir}/derby/derby.jar"/>
-    </library>
-    ```
-    
-    ```
-    <dataSource id="DefaultDataSource" jndiName="ee7-concurrency-sample">
-        <jdbcDriver libraryRef="DerbyLib"/>
-        <properties.derby.embedded databaseName="${shared.resource.dir}/data/concurrentsampledb" createDatabase="create"/>
-    </dataSource>
-    ```
-    
-3.	Install the sample app to your server by copying sample.javaee7.concurrency.war that was made from running: " mvn install"
-4.	Start the server.
-5.	Run the sample by hitting the following URL using your server's hostname and port
-[http://hostname:port/sample.javaee7.concurrency/ConcurrencySample](http://hostname:port/sample.javaee7.concurrency/ConcurrencySample)
 
 ### WAS Classic
 
@@ -96,3 +71,4 @@ Configure required resources
 7.	When the Confirm changes section is displayed, click Save.
 8.	Click Applications > Application Types > WebSphere enterprise applications.
 9.	Select the check box next to the sample application, and click Start.
+
