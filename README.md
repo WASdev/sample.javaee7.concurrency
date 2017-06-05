@@ -75,4 +75,4 @@ Configure required resources
 
 ## Notice
 
-© Copyright IBM Corporation 2015, 2017.
+© Copyright IBM Corporation 2016, 2017.
