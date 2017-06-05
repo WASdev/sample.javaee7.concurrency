@@ -73,3 +73,6 @@ Configure required resources
 8.	Click Applications > Application Types > WebSphere enterprise applications.
 9.	Select the check box next to the sample application, and click Start.
 
+## Notice
+
+© Copyright IBM Corporation 2015, 2017.
