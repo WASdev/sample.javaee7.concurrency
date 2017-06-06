@@ -13,7 +13,7 @@ Then, in the same directory issue the following command to run it on a Liberty s
 
   `$ mvn liberty:run-server`
 
-You can connect to the application at [http://hostname:port/sample.javaee7.concurrency/ConcurrencySample](http://hostname:port/sample.javaee7.concurrency/ConcurrencySample).
+You can connect to the application at [http://hostname:port/sample.javaee7.concurrency/](http://hostname:port/sample.javaee7.concurrency/).
 
 #### Running in Eclipse/WDT with Maven
 
@@ -23,6 +23,7 @@ WDT also provides:
 
 - content-assist for server configuration (a nice to have: server configuration is minimal, but the tools can help you find what you need and identify finger-checks, etc.)
 - automatic incremental publish of applications so that you can write and test your changes locally without having to go through a build/publish cycle or restart the server (which is not that big a deal given the server restarts lickety-split, but less is more!).
+- improved Maven integration for web projects starting with WDT 17.0.0.2 including support for loose applications.
 
 Installing WDT on Eclipse is as simple as a drag-and-drop, but the process is explained on [wasdev.net](https://developer.ibm.com/wasdev/downloads/liberty-profile-using-eclipse/).
 
@@ -72,3 +73,24 @@ Configure required resources
 8.	Click Applications > Application Types > WebSphere enterprise applications.
 9.	Select the check box next to the sample application, and click Start.
 
+## Notice
+
+© Copyright IBM Corporation 2016, 2017.
+
+## License
+
+```text
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+````
+
+[Liberty Maven Plug-in]: https://github.com/WASdev/ci.maven
