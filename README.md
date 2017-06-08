@@ -1,4 +1,4 @@
-### Concurrency sample for Java EE7
+### Concurrency sample for Java EE7 [![Build Status](https://travis-ci.org/WASdev/sample.javaee7.concurrency.svg?branch=master)](https://travis-ci.org/WASdev/sample.javaee7.concurrency)
 
 This application on demonstrates how to use managed executors, managed scheduled executors and context service to perform tasks in parallel in a simple application.
 
