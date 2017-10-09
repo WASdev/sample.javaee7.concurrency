@@ -6,8 +6,8 @@ version = '1'
 
 description = """"""
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 tasks.withType(JavaCompile) {
 	options.encoding = 'UTF-8'
 }
@@ -42,16 +42,16 @@ ext {
 }
 
 war {
-		archiveName = baseName + '.' + extension
+	archiveName = baseName + '.' + extension
 }
 
 liberty {
     server{
         configFile = file("src/main/wlp/server.xml")
-				bootstrapProperties = ['appLocation': war.archiveName]
+		bootstrapProperties = ['appLocation': war.archiveName]
         name = 'LibertyProjectServer'
         apps = [war]
-				looseApplication = false
+		looseApplication = false
      }
 }
 
@@ -69,8 +69,8 @@ dependencies {
     providedCompile group: 'javax.transaction', name: 'javax.transaction-api', version:'1.2'
     providedCompile group: 'javax.enterprise', name: 'cdi-api', version:'1.2'
     providedCompile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version:'2.0'
-		derby group: 'org.apache.derby', name: 'derby', version: '10.13.1.1'
-		libertyRuntime group: 'com.ibm.websphere.appserver.runtime', name: 'wlp-javaee7', version: '17.0.0.2'
+	derby group: 'org.apache.derby', name: 'derby', version: '10.13.1.1'
+    libertyRuntime group: 'com.ibm.websphere.appserver.runtime', name: 'wlp-javaee7', version: '17.0.0.2'
 }
 
 task copyDerby {
@@ -79,27 +79,9 @@ task copyDerby {
             from configurations.derby
             into "$buildDir/wlp/usr/shared/resources/derby"
             include '*.jar'
-						rename("derby-10.13.1.1.jar","derby.jar")
+			rename("derby-10.13.1.1.jar","derby.jar")
         }
     }
-}
-
-test {
-    println 'inside the test block'
-    reports.html.destination = file("$buildDir/reports/unit")
-    reports.junitXml.destination = file("$buildDir/test-results/unit")
-    exclude '**/it/**'
-}
-
-task integrationTest(type: Test) {
-    group 'Verification'
-    description 'Runs the integration tests.'
-    reports.html.destination = file("$buildDir/reports/it")
-    reports.junitXml.destination = file("$buildDir/test-results/it")
-    include '**/it/**'
-    exclude '**/unit/**'
-
-    systemProperties = ['liberty.test.port': testServerHttpPort, 'war.name': warContext]
 }
 
 task printMessageAboutRunningServer {
@@ -109,9 +91,6 @@ task printMessageAboutRunningServer {
     }
 }
 
-check.dependsOn 'integrationTest'
-copyDerby.dependsOn 'installApps'
-libertyStart.dependsOn 'copyDerby', 'copyPersistence'
-integrationTest.dependsOn 'libertyStart', 'testClasses'
-integrationTest.finalizedBy 'libertyStop'
-libertyStart.finalizedBy 'printMessageAboutRunningServer'
+check.dependsOn 'installApps'
+copyDerby.dependsOn 'libertyCreate'
+libertyStart.dependsOn 'copyDerby', 'installApps'
