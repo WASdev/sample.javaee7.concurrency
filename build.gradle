@@ -4,7 +4,7 @@ apply plugin: 'liberty'
 group = 'liberty.gradle'
 version = '1'
 
-description = """"""
+description = "WAS Liberty Sample - Concurrency Example"
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
