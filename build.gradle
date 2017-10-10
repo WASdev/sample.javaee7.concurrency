@@ -42,16 +42,16 @@ ext {
 }
 
 war {
-	archiveName = baseName + '.' + extension
+    archiveName = baseName + '.' + extension
 }
 
 liberty {
     server{
         configFile = file("src/main/wlp/server.xml")
-		bootstrapProperties = ['appLocation': war.archiveName]
+        bootstrapProperties = ['appLocation': war.archiveName]
         name = 'LibertyProjectServer'
         apps = [war]
-		looseApplication = false
+        looseApplication = false
      }
 }
 
@@ -69,7 +69,7 @@ dependencies {
     providedCompile group: 'javax.transaction', name: 'javax.transaction-api', version:'1.2'
     providedCompile group: 'javax.enterprise', name: 'cdi-api', version:'1.2'
     providedCompile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version:'2.0'
-	derby group: 'org.apache.derby', name: 'derby', version: '10.13.1.1'
+    derby group: 'org.apache.derby', name: 'derby', version: '10.13.1.1'
     libertyRuntime group: 'com.ibm.websphere.appserver.runtime', name: 'wlp-javaee7', version: '17.0.0.2'
 }
 
@@ -79,7 +79,7 @@ task copyDerby {
             from configurations.derby
             into "$buildDir/wlp/usr/shared/resources/derby"
             include '*.jar'
-			rename("derby-10.13.1.1.jar","derby.jar")
+            rename("derby-10.13.1.1.jar","derby.jar")
         }
     }
 }
