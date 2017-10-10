@@ -2,8 +2,8 @@
 
 This application on demonstrates how to use managed executors, managed scheduled executors and context service to perform tasks in parallel in a simple application.
 
-### WAS Liberty
-#### Running with Maven
+## WAS Liberty
+### Running with Maven
 
 The sample can be built using Apache Maven. In the directory where you cloned the repository issue the following command to build the source.
 
@@ -26,6 +26,15 @@ WDT also provides:
 - improved Maven integration for web projects starting with WDT 17.0.0.2 including support for loose applications.
 
 Installing WDT on Eclipse is as simple as a drag-and-drop, but the process is explained on [wasdev.net](https://developer.ibm.com/wasdev/downloads/liberty-profile-using-eclipse/).
+
+#### Import project and running in Eclipse/WDT:
+
+1.	Select menu File -> Import -> Maven -> Existing Maven Projects.
+2.	Select Browse... to the top level directory titled sample.javaee7.concurrency and select Finish
+3.	Click Yes to the WebSphere Liberty dialog to automatically create server in the Servers view for this project.
+4.  Right-click the project and select Run As > Run on Server.
+5.  Select the server and click Finish.
+6.  Confirm web browser opens with the sample url, [http://localhost:9080/sample.javaee7.concurrency/](http://localhost:9080/sample.javaee7.concurrency/).
 
 ## Running with Gradle
 
@@ -56,16 +65,6 @@ Once the server has started, the application will be available under [http://loc
     ```  
 
 Please refer to the [ci.gradle] repository for documentation about using the Liberty Gradle Plug-in.
-
-#### Import project and running in Eclipse/WDT:
-
-1.	Select menu File -> Import -> Maven -> Existing Maven Projects.
-2.	Select Browse... to the top level directory titled sample.javaee7.concurrency and select Finish
-3.	Click Yes to the WebSphere Liberty dialog to automatically create server in the Servers view for this project.
-4.  Right-click the project and select Run As > Run on Server.
-5.  Select the server and click Finish.
-6.  Confirm web browser opens with the sample url, [http://localhost:9080/sample.javaee7.concurrency/](http://localhost:9080/sample.javaee7.concurrency/).
-
 
 ### WAS Classic
 
