@@ -2,8 +2,8 @@
 
 This application on demonstrates how to use managed executors, managed scheduled executors and context service to perform tasks in parallel in a simple application.
 
-### WAS Liberty
-#### Running with Maven
+## WAS Liberty
+### Running with Maven
 
 The sample can be built using Apache Maven. In the directory where you cloned the repository issue the following command to build the source.
 
@@ -36,6 +36,35 @@ Installing WDT on Eclipse is as simple as a drag-and-drop, but the process is ex
 5.  Select the server and click Finish.
 6.  Confirm web browser opens with the sample url, [http://localhost:9080/sample.javaee7.concurrency/](http://localhost:9080/sample.javaee7.concurrency/).
 
+## Running with Gradle
+
+This project can also be built and run with [Gradle]. The provided `build.gradle` file applies the [Liberty Gradle Plug-in] and is configured to automatically download and install the Liberty Java EE7 Web Profile runtime from Maven Central. The Liberty Gradle Plug-in has built-in tasks that can be used to create, configure, and run the application on the Liberty server.
+
+Use the following steps to run the application with Gradle:
+
+1. Execute the full Gradle build. The Liberty Gradle Plug-in will download and install the Liberty server.
+    ```bash
+    $ gradle clean build
+    ```
+
+2. To start the server with the Servlet sample execute:
+    ```bash
+    $ gradle libertyStart
+    ```
+
+    Alternatively, execute the run command:
+    ```bash
+    $ gradle libertyRun --no-daemon
+    ```
+
+Once the server has started, the application will be available under [http://localhost:9080/sample.javaee7.concurrency/](http://localhost:9080/sample.javaee7.concurrency/).
+
+3. To stop the server, execute:
+    ```bash
+    $ gradle libertyStop
+    ```  
+
+Please refer to the [ci.gradle] repository for documentation about using the Liberty Gradle Plug-in.
 
 ### WAS Classic
 
@@ -54,11 +83,11 @@ Configure required resources
 
 #### Install using wsadmin tool
 
-1. Start wsadmin tool with Jython option 
-2. Run command 
+1. Start wsadmin tool with Jython option
+2. Run command
 `AdminApp.install('<path-to-the-app>/sample.javaee7.concurrency.war','[-node <your-node-name> -server <your-server-name> -appname sample.javaee7.concurrency -contextroot sample.javaee7.concurrency -MapWebModToVH [[ sample.javaee7.concurrency sample.javaee7.concurrency.war,WEB-INF/web.xml default_host ]] -MapResEnvRefToRes [[ sample.javaee7.concurrency "" sample.javaee7.concurrency.war,WEB-INF/web.xml com.ibm.ws.samples.concurrency.ConcurrencySampleServlet/contextService javax.enterprise.concurrent.ContextService wm/default ][ sample.javaee7.concurrency "" sample.javaee7.concurrency.war,WEB-INF/web.xml com.ibm.ws.samples.concurrency.ConcurrencySampleServlet/executor javax.enterprise.concurrent.ManagedScheduledExecutorService wm/default ]]]' ) `
 
-3. Save configuration 
+3. Save configuration
 
 #### Install using the Administrative Console
 
@@ -94,3 +123,6 @@ limitations under the License.
 ````
 
 [Liberty Maven Plug-in]: https://github.com/WASdev/ci.maven
+[Liberty Gradle Plug-in]: https://github.com/WASdev/ci.gradle
+[ci.gradle]: https://github.com/WASdev/ci.gradle
+[Gradle]: https://gradle.org

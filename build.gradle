@@ -1,0 +1,92 @@
+apply plugin: 'war'
+apply plugin: 'liberty'
+
+group = 'liberty.gradle'
+version = '1'
+
+description = "WAS Liberty Sample - Concurrency Example"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'net.wasdev.wlp.gradle.plugins:liberty-gradle-plugin:2.0'
+    }
+}
+
+repositories {
+     mavenCentral()
+}
+
+ext {
+    // Liberty server properties
+    wlpServerName = 'LibertyProjectServer'
+    serverDirectory = "${project.buildDir}/wlp/usr/servers/${wlpServerName}"
+    testServerHttpPort = 9080
+    testServerHttpsPort = 9443
+
+    warContext = 'sample.javaee7.concurrency'
+
+}
+
+war {
+    archiveName = baseName + '.' + extension
+}
+
+liberty {
+    server{
+        configFile = file("src/main/wlp/server.xml")
+        bootstrapProperties = ['appLocation': war.archiveName]
+        name = 'LibertyProjectServer'
+        apps = [war]
+        looseApplication = false
+     }
+}
+
+
+configurations{
+     derby { transitive = true }
+}
+
+dependencies {
+    providedCompile group: 'org.apache.derby', name: 'derby', version:'10.13.1.1'
+    providedCompile group: 'javax.json', name: 'javax.json-api', version:'1.0'
+    providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version:'3.1.0'
+    providedCompile group: 'org.eclipse.persistence', name: 'javax.persistence', version:'2.1.0'
+    providedCompile group: 'javax.enterprise.concurrent', name: 'javax.enterprise.concurrent-api', version:'1.0'
+    providedCompile group: 'javax.transaction', name: 'javax.transaction-api', version:'1.2'
+    providedCompile group: 'javax.enterprise', name: 'cdi-api', version:'1.2'
+    providedCompile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version:'2.0'
+    derby group: 'org.apache.derby', name: 'derby', version: '10.13.1.1'
+    libertyRuntime group: 'com.ibm.websphere.appserver.runtime', name: 'wlp-javaee7', version: '17.0.0.2'
+}
+
+task copyDerby {
+    doLast {
+        copy {
+            from configurations.derby
+            into "$buildDir/wlp/usr/shared/resources/derby"
+            include '*.jar'
+            rename("derby-10.13.1.1.jar","derby.jar")
+        }
+    }
+}
+
+task printMessageAboutRunningServer {
+    doLast {
+        println "The server is now running at http://localhost:${testServerHttpPort}/${warContext}"
+        println "To stop the server run 'gradle libertyStop'"
+    }
+}
+
+check.dependsOn 'installApps'
+copyDerby.dependsOn 'libertyCreate'
+libertyStart.dependsOn 'copyDerby', 'installApps'
