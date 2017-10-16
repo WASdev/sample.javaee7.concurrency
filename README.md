@@ -57,7 +57,7 @@ Use the following steps to run the application with Gradle:
     $ gradle libertyRun --no-daemon
     ```
 
-Once the server has started, the application will be available under [http://localhost:9080/sample.javaee7.jsonp](http://localhost:9080/sample.javaee7.jsonp).
+Once the server has started, the application will be available under [http://localhost:9080/sample.javaee7.concurrency/](http://localhost:9080/sample.javaee7.concurrency/).
 
 3. To stop the server, execute:
     ```bash
