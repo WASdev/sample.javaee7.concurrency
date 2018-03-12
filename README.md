@@ -3,20 +3,9 @@
 This application on demonstrates how to use managed executors, managed scheduled executors and context service to perform tasks in parallel in a simple application.
 
 ## WAS Liberty
-### Running with Maven
 
-The sample can be built using Apache Maven. In the directory where you cloned the repository issue the following command to build the source.
-
-  `$ mvn install`
-
-Then, in the same directory issue the following command to run it on a Liberty server.
-
-  `$ mvn liberty:run-server`
-
-You can connect to the application at [http://hostname:port/sample.javaee7.concurrency/](http://hostname:port/sample.javaee7.concurrency/).
-
-#### Running in Eclipse/WDT with Maven
-
+## Running in Eclipse
+### Maven
 The WebSphere Development Tools (WDT) for Eclipse can be used to control the server (start/stop/dump/etc.), it also supports incremental publishing with minimal restarts, working with a debugger to step through your applications, etc.
 
 WDT also provides:
@@ -28,7 +17,6 @@ WDT also provides:
 Installing WDT on Eclipse is as simple as a drag-and-drop, but the process is explained on [wasdev.net](https://developer.ibm.com/wasdev/downloads/liberty-profile-using-eclipse/).
 
 #### Import project and running in Eclipse/WDT:
-
 1.	Select menu File -> Import -> Maven -> Existing Maven Projects.
 2.	Select Browse... to the top level directory titled sample.javaee7.concurrency and select Finish
 3.	Click Yes to the WebSphere Liberty dialog to automatically create server in the Servers view for this project.
@@ -36,8 +24,29 @@ Installing WDT on Eclipse is as simple as a drag-and-drop, but the process is ex
 5.  Select the server and click Finish.
 6.  Confirm web browser opens with the sample url, [http://localhost:9080/sample.javaee7.concurrency/](http://localhost:9080/sample.javaee7.concurrency/).
 
-## Running with Gradle
+### Gradle
+Eclipse will use the Eclipse Buildship Gradle Plugin for Gradle project management and accessibility to tasks.
 
+1. Go to *Help > Eclipse Marketplace > Install Buildship Gradle Integration 2.0*
+2. Clone this project and import into Eclipse as an 'Existing Gradle Project'.
+3. Go to *Window > Show View > Other > Gradle Executions & Gradle Tasks*
+4. Go to Gradle Tasks view and run `clean` in build folder, then `build` in build folder, then `libertyStart` in liberty folder.
+5. You should see the following in the console: `Application sample.javaee7.concurrency started in XX.XX seconds.`
+6. Confirm web browser opens with the sample url, [http://localhost:9080/sample.javaee7.concurrency/](http://localhost:9080/sample.javaee7.concurrency/).
+
+## Running in the Command Line
+### Maven
+The sample can be built using Apache Maven. In the directory where you cloned the repository issue the following command to build the source.
+
+  `$ mvn install`
+
+Then, in the same directory issue the following command to run it on a Liberty server.
+
+  `$ mvn liberty:run-server`
+
+You can connect to the application at [http://hostname:port/sample.javaee7.concurrency/](http://hostname:port/sample.javaee7.concurrency/).
+
+### Gradle
 This project can also be built and run with [Gradle]. The provided `build.gradle` file applies the [Liberty Gradle Plug-in] and is configured to automatically download and install the Liberty Java EE7 Web Profile runtime from Maven Central. The Liberty Gradle Plug-in has built-in tasks that can be used to create, configure, and run the application on the Liberty server.
 
 Use the following steps to run the application with Gradle:
