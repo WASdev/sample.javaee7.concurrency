@@ -3,6 +3,8 @@
 This application on demonstrates how to use managed executors, managed scheduled executors and context service to perform tasks in parallel in a simple application.
 
 ## WAS Liberty
+This project can be built with [Maven](https://maven.apache.org) or [Gradle](https://gradle.org). Below are instructions to build it using the Eclipse IDE or command line.  
+WAS Classic instructions are located [here](#was-classic).
 
 ## Running in Eclipse
 ### Maven
@@ -75,8 +77,8 @@ Once the server has started, the application will be available under [http://loc
 
 Please refer to the [ci.gradle] repository for documentation about using the Liberty Gradle Plug-in.
 
-### WAS Classic
 
+## WAS Classic
 Configure required resources
 
 1.	Verify that a Derby JDBC Provider instance exists. In the administrative console, click Resources > JDBC > JDBC providers.
