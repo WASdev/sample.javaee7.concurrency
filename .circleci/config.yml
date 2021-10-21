@@ -22,11 +22,7 @@ jobs:
       - run:
           name: Build
           command: mvn -B -DskipTests install
-          
-      - run:
-          name: Deploy
-          command: mvn liberty:run-server test
-          
+ 
       # Then run your tests!
       - run:
           name: Test
