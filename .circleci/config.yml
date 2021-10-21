@@ -23,7 +23,7 @@ jobs:
           name: Build
           command: mvn -B -DskipTests install
           
-          - run:
+      - run:
           name: Deploy
           command: mvn liberty:run-server -B -DskipTests 
           
