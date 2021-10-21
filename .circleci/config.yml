@@ -21,7 +21,12 @@ jobs:
       # Use mvn clean and package as the standard maven build phase
       - run:
           name: Build
-          command: mvn -B -DskipTests clean package
+          command: mvn -B -DskipTests install
+          
+          - run:
+          name: Deploy
+          command: mvn liberty:run-server -B -DskipTests 
+          
       # Then run your tests!
       - run:
           name: Test
